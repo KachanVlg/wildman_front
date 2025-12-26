@@ -34,55 +34,65 @@ const Rating = () => {
   };
 
   return (
-    <div className="rating-container">
+    <div className="rating-container page-shell">
       <BackButton />
-      <h1 className="rating-title">How was your chat?</h1>
-      
-      <div className="rating-stars">
-        <span>{rating} / 5 stars</span>
-        {[1, 2, 3, 4, 5].map((value) => (
-          <button
-            key={value}
-            className={`star-button ${rating >= value ? 'active' : ''}`}
-            onClick={() => handleRatingChange(value)}
-          >
-            ★
+      <div className="rating-card panel fade-in">
+        <div className="rating-header">
+          <span className="chip">Фидбек</span>
+          <h1 className="rating-title">Как прошел чат?</h1>
+          <p className="rating-subtitle">
+            Оцени диалог, чтобы мы улучшили опыт тренировки.
+          </p>
+        </div>
+        
+        <div className="rating-stars">
+          <span>{rating} / 5</span>
+          <div className="stars-row">
+            {[1, 2, 3, 4, 5].map((value) => (
+              <button
+                key={value}
+                className={`star-button ${rating >= value ? 'active' : ''}`}
+                onClick={() => handleRatingChange(value)}
+              >
+                ★
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <div className="rating-questions">
+          <p>Ответь на пару вопросов:</p>
+          <label>
+            <input
+              type="checkbox"
+              checked={answers.spokeEnglish}
+              onChange={() => handleAnswerChange('spokeEnglish')}
+            />
+            Did your interlocutor speak to you in English?
+          </label>
+          <label>
+            <input
+              type="checkbox"
+              checked={answers.oneWordSentences}
+              onChange={() => handleAnswerChange('oneWordSentences')}
+            />
+            Didn’t your interlocutor speak in one-word sentences?
+          </label>
+          <label>
+            <input
+              type="checkbox"
+              checked={answers.usedWordsInContext}
+              onChange={() => handleAnswerChange('usedWordsInContext')}
+            />
+            Did your interlocutor use the words in context?
+          </label>
+        </div>
+
+        <div className="submit-button-container">
+          <button className="submit-button btn-primary" onClick={handleSubmit}>
+            Submit
           </button>
-        ))}
-      </div>
-
-      <div className="rating-questions">
-        <p>Answer the question (necessarily):</p>
-        <label>
-          <input
-            type="checkbox"
-            checked={answers.spokeEnglish}
-            onChange={() => handleAnswerChange('spokeEnglish')}
-          />
-          Did your interlocutor speak to you in English?
-        </label>
-        <label>
-          <input
-            type="checkbox"
-            checked={answers.oneWordSentences}
-            onChange={() => handleAnswerChange('oneWordSentences')}
-          />
-          Didn’t your interlocutor speak in one-word sentences?
-        </label>
-        <label>
-          <input
-            type="checkbox"
-            checked={answers.usedWordsInContext}
-            onChange={() => handleAnswerChange('usedWordsInContext')}
-          />
-          Did your interlocutor use the words in context?
-        </label>
-      </div>
-
-      <div className="submit-button-container">
-        <button className="submit-button" onClick={handleSubmit}>
-          Submit
-        </button>
+        </div>
       </div>
     </div>
   );

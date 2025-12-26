@@ -1,95 +1,82 @@
 .edit-deck-container {
-  max-width: 600px;
-  margin: 2rem auto;
-  padding: 2rem;
-  background-color: #ffffff;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  align-items: center;
+}
+
+.edit-deck-card {
+  width: min(640px, 100%);
+  padding: clamp(22px, 4vw, 36px);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.edit-deck-header {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .edit-deck-title {
-  text-align: center;
-  color: #333;
-  margin-bottom: 2rem;
+  margin: 0;
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+}
+
+.edit-deck-subtitle {
+  margin: 0;
+  color: #556070;
+  line-height: 1.5;
 }
 
 .edit-deck-loading {
+  align-items: center;
+}
+
+.edit-loading-card {
+  width: min(420px, 100%);
+  padding: 18px;
   text-align: center;
-  font-size: 1.2rem;
-  color: #666;
-  margin-top: 2rem;
+  font-weight: 600;
 }
 
 .deck-name-section {
-  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .deck-name-section label {
-  display: block;
-  margin-bottom: 0.5rem;
   font-weight: 600;
-  color: #444;
-}
-
-.deck-name-input {
-  width: 100%;
-  padding: 0.8rem;
-  font-size: 1rem;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  box-sizing: border-box;
-}
-
-.deck-name-input:focus {
-  outline: none;
-  border-color: #4a90e2;
-  box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.2);
+  color: #3f4b5a;
 }
 
 .action-buttons {
   display: flex;
   justify-content: flex-end;
-  gap: 1rem;
-  margin-top: 2rem;
+  gap: 12px;
 }
 
 .cancel-button, .save-button {
-  padding: 0.8rem 1.5rem;
+  padding: 10px 18px;
   font-size: 1rem;
   border: none;
-  border-radius: 4px;
+  border-radius: 999px;
   cursor: pointer;
-  transition: background-color 0.2s;
+  font-weight: 700;
 }
 
 .cancel-button {
-  background-color: #f5f5f5;
-  color: #333;
-}
-
-.cancel-button:hover {
-  background-color: #e0e0e0;
+  background-color: #f2f4f7;
+  color: #1f2a37;
 }
 
 .save-button {
-  background-color: #4a90e2;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
   color: white;
-}
-
-.save-button:hover {
-  background-color: #3a7bc8;
+  box-shadow: var(--shadow-soft);
 }
 
 .save-button:disabled {
-  background-color: #cccccc;
+  opacity: 0.6;
   cursor: not-allowed;
-}
-
-.error-message {
-  color: #e74c3c;
-  background-color: #fdecea;
-  padding: 0.8rem;
-  border-radius: 4px;
-  margin-bottom: 1.5rem;
-  text-align: center;
+  box-shadow: none;
 }

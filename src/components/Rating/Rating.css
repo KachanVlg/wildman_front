@@ -1,57 +1,78 @@
 .rating-container {
-  text-align: center;
-  margin: 50px auto;
-  max-width: 600px;
+  align-items: center;
+}
+
+.rating-card {
+  width: min(680px, 100%);
+  padding: clamp(22px, 4vw, 36px);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.rating-header {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .rating-title {
-  font-size: 28px;
-  margin-bottom: 20px;
+  margin: 0;
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+}
+
+.rating-subtitle {
+  margin: 0;
+  color: #556070;
+  line-height: 1.5;
 }
 
 .rating-stars {
-  margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-weight: 700;
+  color: #1f2a37;
+}
+
+.stars-row {
+  display: flex;
+  gap: 8px;
 }
 
 .star-button {
-  font-size: 36px;
+  font-size: 34px;
   background: none;
   border: none;
   cursor: pointer;
-  color: #ccc;
+  color: #d6d6d6;
+  transition: transform 0.15s ease;
 }
 
 .star-button.active {
-  color: gold;
+  color: #ffd166;
+  transform: scale(1.05);
 }
 
 .rating-questions {
   text-align: left;
-  margin: 20px auto;
-  padding: 0 20px;
+  padding: 16px;
+  border-radius: 16px;
+  border: 1px solid rgba(240, 217, 181, 0.8);
+  background: #fff9ee;
 }
 
 .rating-questions label {
   display: block;
   margin: 10px 0;
-  font-size: 16px;
+  font-size: 0.98rem;
+  color: #3f4b5a;
 }
 
 .submit-button-container {
   text-align: right;
-  margin-top: 30px;
 }
 
 .submit-button {
-  background-color: #4CAF50;
-  color: white;
-  border: none;
   padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
-  border-radius: 5px;
-}
-
-.submit-button:hover {
-  background-color: #45a049;
 }

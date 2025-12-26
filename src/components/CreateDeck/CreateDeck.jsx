@@ -46,39 +46,47 @@ const CreateDeck = () => {
   };
 
   return (
-    <div className="create-deck-container">
+    <div className="create-deck-container page-shell">
       <BackButton />
-      <h1 className="create-deck-title">Create new deck</h1>
-      
-      {error && <div className="error-message">{error}</div>}
+      <div className="create-deck-card panel fade-in">
+        <div className="create-deck-header">
+          <span className="chip">Новый уровень</span>
+          <h1 className="create-deck-title">Создать колоду</h1>
+          <p className="create-deck-subtitle">
+            Назови колоду так, чтобы она мотивировала учиться каждый день.
+          </p>
+        </div>
+        
+        {error && <div className="error-message">{error}</div>}
 
-      <div className="deck-name-section">
-        <label htmlFor="deck-name">Deck name:</label>
-        <input
-          type="text"
-          id="deck-name"
-          value={deckName}
-          onChange={(e) => setDeckName(e.target.value)}
-          className="deck-name-input"
-          placeholder="Enter deck name"
-        />
-      </div>
+        <div className="deck-name-section">
+          <label htmlFor="deck-name">Название колоды</label>
+          <input
+            type="text"
+            id="deck-name"
+            value={deckName}
+            onChange={(e) => setDeckName(e.target.value)}
+            className="input-field"
+            placeholder="Например: Сленг и мемы"
+          />
+        </div>
 
-      <div className="action-buttons">
-        <button 
-          className="cancel-button"
-          onClick={handleCancel}
-          disabled={isLoading}
-        >
-          Cancel
-        </button>
-        <button 
-          className="create-button"
-          onClick={handleCreateDeck}
-          disabled={!deckName.trim() || isLoading}
-        >
-          {isLoading ? 'Creating...' : 'Create Deck'}
-        </button>
+        <div className="action-buttons">
+          <button 
+            className="cancel-button"
+            onClick={handleCancel}
+            disabled={isLoading}
+          >
+            Отмена
+          </button>
+          <button 
+            className="create-button"
+            onClick={handleCreateDeck}
+            disabled={!deckName.trim() || isLoading}
+          >
+            {isLoading ? 'Создаем...' : 'Создать колоду'}
+          </button>
+        </div>
       </div>
     </div>
   );

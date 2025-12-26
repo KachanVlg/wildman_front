@@ -66,47 +66,55 @@ const EditDeck = () => {
 
   if (isFetching) {
     return (
-      <div className="edit-deck-loading">
+      <div className="edit-deck-loading page-shell">
         <BackButton />
-        Loading...
+        <div className="panel edit-loading-card">Загружаем колоду...</div>
       </div>
     );
   }
 
   return (
-    <div className="edit-deck-container">
+    <div className="edit-deck-container page-shell">
       <BackButton />
-      <h1 className="edit-deck-title">Edit Deck</h1>
-      
-      {error && <div className="error-message">{error}</div>}
+      <div className="edit-deck-card panel fade-in">
+        <div className="edit-deck-header">
+          <span className="chip">Редактирование</span>
+          <h1 className="edit-deck-title">Переименовать колоду</h1>
+          <p className="edit-deck-subtitle">
+            Обнови название — пусть отражает текущую цель.
+          </p>
+        </div>
+        
+        {error && <div className="error-message">{error}</div>}
 
-      <div className="deck-name-section">
-        <label htmlFor="deck-name">Deck name:</label>
-        <input
-          type="text"
-          id="deck-name"
-          value={deckName}
-          onChange={(e) => setDeckName(e.target.value)}
-          className="deck-name-input"
-          placeholder="Enter deck name"
-        />
-      </div>
+        <div className="deck-name-section">
+          <label htmlFor="deck-name">Название колоды</label>
+          <input
+            type="text"
+            id="deck-name"
+            value={deckName}
+            onChange={(e) => setDeckName(e.target.value)}
+            className="input-field"
+            placeholder="Введите новое название"
+          />
+        </div>
 
-      <div className="action-buttons">
-        <button 
-          className="cancel-button"
-          onClick={handleCancel}
-          disabled={isLoading}
-        >
-          Cancel
-        </button>
-        <button 
-          className="save-button"
-          onClick={handleSave}
-          disabled={!deckName.trim() || isLoading}
-        >
-          {isLoading ? 'Saving...' : 'Save Changes'}
-        </button>
+        <div className="action-buttons">
+          <button 
+            className="cancel-button"
+            onClick={handleCancel}
+            disabled={isLoading}
+          >
+            Отмена
+          </button>
+          <button 
+            className="save-button"
+            onClick={handleSave}
+            disabled={!deckName.trim() || isLoading}
+          >
+            {isLoading ? 'Сохраняем...' : 'Сохранить'}
+          </button>
+        </div>
       </div>
     </div>
   );

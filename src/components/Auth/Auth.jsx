@@ -77,44 +77,55 @@ const Auth = () => {
   };
 
   return (
-    <div className="auth-container">
-      <h1 className="auth-title">Вход</h1>
-      {error && <div className="error-message">{error}</div>}
-      
-      <form onSubmit={handleSubmit} className="auth-form">
-        <div className="form-group">
-          <label htmlFor="username">Username</label>
-          <input
-            type="text"
-            id="username"
-            name="username"
-            value={formData.username}
-            onChange={handleChange}
-            required
-            disabled={isLoading}
-          />
+    <div className="auth-container page-shell">
+      <div className="auth-panel panel fade-in">
+        <div className="auth-header">
+          <span className="chip">Вход в игру</span>
+          <h1 className="auth-title">С возвращением!</h1>
+          <p className="auth-subtitle">
+            Подключайся к своим колодам и продолжай тренировку.
+          </p>
         </div>
 
-        <div className="form-group">
-          <label htmlFor="password">Password</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-            required
-            minLength="6"
-            disabled={isLoading}
-          />
-        </div>
+        {error && <div className="error-message">{error}</div>}
+        
+        <form onSubmit={handleSubmit} className="auth-form">
+          <div className="form-group">
+            <label htmlFor="username">Имя пользователя</label>
+            <input
+              type="text"
+              id="username"
+              name="username"
+              className="input-field"
+              value={formData.username}
+              onChange={handleChange}
+              required
+              disabled={isLoading}
+            />
+          </div>
 
-        <button type="submit" className="auth-button" disabled={isLoading}>
-          {isLoading ? 'Logging in...' : 'Войти'}
-        </button>
-      </form>
-      <div className="auth-switch">
-        Нет аккаунта? <Link to="/signin">Зарегистрироваться</Link>
+          <div className="form-group">
+            <label htmlFor="password">Пароль</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              className="input-field"
+              value={formData.password}
+              onChange={handleChange}
+              required
+              minLength="6"
+              disabled={isLoading}
+            />
+          </div>
+
+          <button type="submit" className="auth-button btn-primary" disabled={isLoading}>
+            {isLoading ? 'Входим...' : 'Войти'}
+          </button>
+        </form>
+        <div className="auth-switch">
+          Нет аккаунта? <Link to="/signin">Зарегистрироваться</Link>
+        </div>
       </div>
     </div>
   );

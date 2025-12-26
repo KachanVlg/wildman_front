@@ -1,75 +1,96 @@
 .home-container {
+  align-items: center;
+}
+
+.home-header {
+  width: min(920px, 100%);
+  padding: clamp(20px, 3vw, 36px);
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.home-header-text {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  background-color: #f5f5f5;
-  padding: 20px;
+  gap: 10px;
+  flex: 1;
+  min-width: 240px;
 }
 
 .welcome-message {
-  font-size: 2.5rem;
-  color: #2c3e50;
-  margin-bottom: 40px;
-  text-align: center;
+  margin: 0;
+  font-size: clamp(2rem, 3.5vw, 2.8rem);
+}
+
+.home-tagline {
+  margin: 0;
+  color: #556070;
+  line-height: 1.6;
+}
+
+.home-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 160px;
+}
+
+.stat-label {
+  font-size: 0.85rem;
+  color: #7a8699;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.stat-value {
+  font-size: 1.1rem;
+  font-weight: 700;
 }
 
 .buttons-container {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  width: 100%;
-  max-width: 300px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 18px;
+  width: min(720px, 100%);
 }
 
 .home-btn {
-  padding: 15px 25px;
-  border: none;
-  border-radius: 8px;
-  font-size: 1.1rem;
+  padding: 16px 22px;
+  border-radius: 16px;
+  font-size: 1.05rem;
+  font-weight: 700;
   cursor: pointer;
-  transition: all 0.3s ease;
+  border: none;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: var(--shadow-soft);
+}
+
+.home-btn.primary {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  color: #fff;
+}
+
+.home-btn.secondary {
+  background: linear-gradient(135deg, var(--secondary) 0%, var(--secondary-dark) 100%);
+  color: #fff;
+}
+
+.home-btn.ghost {
+  background: #fff;
+  color: var(--ink);
+  border: 2px dashed rgba(31, 42, 55, 0.15);
 }
 
 .home-btn:hover {
   transform: translateY(-3px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.decks-btn {
-  background-color: #3498db;
-  color: white;
-}
-
-.decks-btn:hover {
-  background-color: #2980b9;
-}
-
-.chat-btn {
-  background-color: #2ecc71;
-  color: white;
-}
-
-.chat-btn:hover {
-  background-color: #27ae60;
-}
-
-.logout-btn {
-  background-color: #e74c3c;
-  color: white;
-}
-
-.logout-btn:hover {
-  background-color: #c0392b;
+  box-shadow: var(--shadow-hard);
 }
 
 @media (max-width: 480px) {
-  .welcome-message {
-    font-size: 2rem;
-  }
-  
-  .home-btn {
-    padding: 12px 20px;
+  .home-stats {
+    flex-direction: row;
+    gap: 18px;
   }
 }

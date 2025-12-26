@@ -89,9 +89,20 @@ const DecksPage = () => {
   };
 
   return (
-    <div className="decks-page">
+    <div className="decks-page page-shell">
       <BackButton />
-      <h1 className="decks-title">Your Decks</h1>
+      <div className="decks-header panel fade-in">
+        <div>
+          <span className="chip">Твои колоды</span>
+          <h1 className="decks-title">Выбери уровень</h1>
+          <p className="decks-subtitle">
+            Тут лежат твои наборы слов. Выбери колоду и начни тренировку.
+          </p>
+        </div>
+        <button className="btn-primary decks-create" onClick={handleCreate}>
+          Новая колода
+        </button>
+      </div>
       
       <div className="decks-grid">
         {decks.map((deck) => (
@@ -116,7 +127,7 @@ const DecksPage = () => {
         ))}
       </div>
 
-      <div className="deck-actions">
+      <div className="deck-actions panel">
         {isEditing && selectedDeck ? (
           <>
             <button 
@@ -149,17 +160,11 @@ const DecksPage = () => {
               Edit
             </button>
             <button 
-              onClick={handleCreate} 
-              className="action-btn create-btn"
-            >
-              Create
-            </button>
-            <button 
               onClick={handleLearnCard} 
               className="action-btn learn-btn"
               disabled={!selectedDeck}
             >
-              Learn Card
+              Learn
             </button>  
           </>
         )}

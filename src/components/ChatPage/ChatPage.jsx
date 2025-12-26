@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import BackButton from '../BackButton/BackButton';
 import './ChatPage.css';
 
 const ChatPage = () => {
-  useNavigate();
   const [message, setMessage] = useState('');
   const [conversation, setConversation] = useState([]);
   const [chatId, setChatId] = useState(null);
@@ -107,17 +105,23 @@ const ChatPage = () => {
   };
 
   return (
-    <div className="chat-container">
-      <div className="conversation-area">
-        <BackButton />
-        <h2 className="conversation-title">Чат с ассистентом</h2>
+    <div className="chat-container page-shell">
+      <BackButton />
+      <div className="chat-panel panel fade-in">
+        <div className="chat-header">
+          <span className="chip">Чат-тренер</span>
+          <h2 className="conversation-title">Чат с ассистентом</h2>
+          <p className="chat-subtitle">
+            Пиши сообщения и получай быстрые подсказки по ошибкам.
+          </p>
+        </div>
 
         {error && <div className="error-message">{error}</div>}
 
         {!chatId ? (
           <div className="create-chat-container">
             <button 
-              className="create-chat-button" 
+              className="btn-primary" 
               onClick={createChat}
               disabled={isLoading}
             >
@@ -152,7 +156,7 @@ const ChatPage = () => {
                 onChange={(e) => setMessage(e.target.value)}
                 onKeyPress={handleKeyPress}
                 placeholder="Введите ваше сообщение"
-                className="message-input"
+                className="message-input input-field"
                 disabled={isLoading}
               />
               <button 

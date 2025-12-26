@@ -37,27 +37,34 @@ const HomePage = () => {
   };
 
   return (
-    <div className="home-container">
-      <h1 className="welcome-message">Здравствуйте, {username}!</h1>
+    <div className="home-container page-shell">
+      <div className="home-header panel fade-in">
+        <div className="home-header-text">
+          <h1 className="welcome-message">Здравствуйте, {username}!</h1>
+          <p className="home-tagline">
+            Выбери режим тренировки и прокачивай словарь сегодня.
+          </p>
+        </div>
+      </div>
       
       <div className="buttons-container">
         <button 
           onClick={handleShowDecks}
-          className="home-btn decks-btn"
+          className="home-btn primary"
         >
-          Показать колоду
+          Колоды и карточки
         </button>
         
         <button 
           onClick={handleShowChat}
-          className="home-btn chat-btn"
+          className="home-btn secondary"
         >
-          Показать чат
+          Чат-тренер
         </button>
         
         <button 
           onClick={handleLogout}
-          className="home-btn logout-btn"
+          className="home-btn ghost"
         >
           Выйти
         </button>

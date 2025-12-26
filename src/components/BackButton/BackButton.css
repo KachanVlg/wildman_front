@@ -1,13 +1,18 @@
 .back-button {
-  background: transparent;
-  border: 1px solid currentColor;
-  border-radius: 6px;
-  color: inherit;
+  align-self: flex-start;
+  background: #fff;
+  border: 2px solid rgba(31, 42, 55, 0.1);
+  border-radius: 999px;
+  color: #1f2a37;
   cursor: pointer;
-  font-size: 14px;
-  padding: 6px 12px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  padding: 8px 16px;
+  box-shadow: 0 6px 14px rgba(31, 42, 55, 0.12);
+  transition: transform 0.15s ease, box-shadow 0.2s ease;
 }
 
 .back-button:hover {
-  opacity: 0.85;
+  transform: translateY(-1px);
+  box-shadow: 0 10px 20px rgba(31, 42, 55, 0.18);
 }

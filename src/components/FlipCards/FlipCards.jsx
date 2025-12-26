@@ -131,47 +131,57 @@ const FlipCards = () => {
 
   if (isLoading) {
     return (
-      <div className="loading">
+      <div className="flip-loading page-shell">
         <BackButton />
-        Loading...
+        <div className="panel loading-card">Загружаем карточки...</div>
       </div>
     );
   }
 
   if (error && cards.length === 0) {
     return (
-      <div className="error-message">
+      <div className="flip-empty page-shell">
         <BackButton />
-        <h2>{error}</h2>
-        <p>No cards found in this deck</p>
-        <button onClick={() => navigate('/decks')}>Back to Decks</button>
+        <div className="panel empty-card">
+          <h2>{error}</h2>
+          <p>No cards found in this deck</p>
+          <button className="btn-secondary" onClick={() => navigate('/decks')}>
+            Назад к колодам
+          </button>
+        </div>
       </div>
     );
   }
 
   if (cards.length === 0) {
     return (
-      <div className="flip-cards-container">
+      <div className="flip-cards-container page-shell">
         <BackButton />
-        <h1 className="page-title">No Cards in This Deck</h1>
-        <div className="add-card-section">
-          <h3>Add New Card</h3>
-          <div className="card-inputs">
-            <input
-              type="text"
-              placeholder="Word"
-              value={newCard.word}
-              onChange={(e) => setNewCard({...newCard, word: e.target.value})}
-            />
-            <input
-              type="text"
-              placeholder="Translation"
-              value={newCard.translation}
-              onChange={(e) => setNewCard({...newCard, translation: e.target.value})}
-            />
-            <button onClick={handleAddCard}>Add Card</button>
+        <div className="panel empty-card">
+          <h1 className="page-title">No Cards in This Deck</h1>
+          <div className="add-card-section">
+            <h3>Add New Card</h3>
+            <div className="card-inputs">
+              <input
+                type="text"
+                placeholder="Word"
+                className="input-field"
+                value={newCard.word}
+                onChange={(e) => setNewCard({...newCard, word: e.target.value})}
+              />
+              <input
+                type="text"
+                placeholder="Translation"
+                className="input-field"
+                value={newCard.translation}
+                onChange={(e) => setNewCard({...newCard, translation: e.target.value})}
+              />
+              <button className="btn-primary" onClick={handleAddCard}>
+                Add Card
+              </button>
+            </div>
+            {error && <div className="error-message">{error}</div>}
           </div>
-          {error && <div className="error-message">{error}</div>}
         </div>
       </div>
     );
@@ -180,9 +190,17 @@ const FlipCards = () => {
   const currentCard = cards[currentCardIndex];
 
   return (
-    <div className="flip-cards-container">
+    <div className="flip-cards-container page-shell">
       <BackButton />
-      <h1 className="page-title">Learning Cards</h1>
+      <div className="flip-header panel fade-in">
+        <div>
+          <span className="chip">Тренировка</span>
+          <h1 className="page-title">Learning Cards</h1>
+        </div>
+        <div className="flip-progress-badge">
+          {currentCardIndex + 1} / {cards.length}
+        </div>
+      </div>
       
       <div className="progress-container">
         <div className="progress-text">
@@ -205,16 +223,18 @@ const FlipCards = () => {
                 value={editData.word}
                 onChange={(e) => setEditData({...editData, word: e.target.value})}
                 placeholder="Word"
+                className="input-field"
               />
               <input
                 type="text"
                 value={editData.translation}
                 onChange={(e) => setEditData({...editData, translation: e.target.value})}
                 placeholder="Translation"
+                className="input-field"
               />
               <div className="edit-buttons">
-                <button onClick={handleSaveEdit}>Save</button>
-                <button onClick={() => setIsEditing(false)}>Cancel</button>
+                <button className="btn-primary" onClick={handleSaveEdit}>Save</button>
+                <button className="btn-secondary" onClick={() => setIsEditing(false)}>Cancel</button>
               </div>
             </div>
           </div>
@@ -237,20 +257,20 @@ const FlipCards = () => {
       </div>
 
       <div className="navigation-buttons">
-        <button className="nav-button previous" onClick={handlePrevious}>
+        <button className="nav-button ghost" onClick={handlePrevious}>
           Previous
         </button>
         {!isEditing && (
           <>
-            <button className="nav-button" onClick={handleEdit}>
+            <button className="nav-button warning" onClick={handleEdit}>
               Edit
             </button>
-            <button className="nav-button" onClick={handleDelete}>
+            <button className="nav-button danger" onClick={handleDelete}>
               Delete
             </button>
           </>
         )}
-        <button className="nav-button next" onClick={handleNext}>
+        <button className="nav-button primary" onClick={handleNext}>
           Next
         </button>
       </div>
@@ -261,16 +281,18 @@ const FlipCards = () => {
           <input
             type="text"
             placeholder="Word"
+            className="input-field"
             value={newCard.word}
             onChange={(e) => setNewCard({...newCard, word: e.target.value})}
           />
           <input
             type="text"
             placeholder="Translation"
+            className="input-field"
             value={newCard.translation}
             onChange={(e) => setNewCard({...newCard, translation: e.target.value})}
           />
-          <button onClick={handleAddCard}>Add Card</button>
+          <button className="btn-primary" onClick={handleAddCard}>Add Card</button>
         </div>
         {error && <div className="error-message">{error}</div>}
       </div>

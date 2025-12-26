@@ -1,187 +1,141 @@
 .decks-page {
-    padding: 2rem;
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-  }
-  
-  .decks-title {
-    text-align: center;
-    margin-bottom: 2rem;
-    color: #2c3e50;
-  }
-  
-  .decks-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1.5rem;
-    margin-bottom: 2rem;
-    flex-grow: 1;
-  }
-  
-  .deck-card {
-    background: white;
-    border-radius: 8px;
-    padding: 1.5rem;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    transition: all 0.2s;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    cursor: pointer;
-    position: relative;
-  }
-  
-  .deck-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  }
-  
-  .deck-card.selected {
-    border: 2px solid #3498db;
-    background-color: #f8fafc;
-  }
-  
-  .deck-name {
-    margin: 0;
-    color: #34495e;
-    text-align: center;
-  }
-  
-  .deck-edit-input {
-    width: 100%;
-    padding: 0.5rem;
-    border: 1px solid #3498db;
-    border-radius: 4px;
-    font-size: 1rem;
-    text-align: center;
-  }
-  
-  .deck-card-count {
-    position: absolute;
-    bottom: 0.5rem;
-    right: 0.5rem;
-    font-size: 0.8rem;
-    color: #7f8c8d;
-  }
-  
-  .deck-actions {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    padding: 1rem 0;
-    background: white;
-    position: sticky;
-    bottom: 0;
-    border-top: 1px solid #eee;
-  }
-  
-  .action-btn {
-    padding: 0.8rem 1.5rem;
-    border: none;
-    border-radius: 6px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.2s;
-    min-width: 120px;
-  }
-  
-  .action-btn:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-  }
-  
-  .delete-btn {
-    background-color: #e74c3c;
-    color: white;
-  }
-  
-  .delete-btn:not(:disabled):hover {
-    background-color: #c0392b;
-  }
-  
-  .edit-btn {
-    background-color: #f39c12;
-    color: white;
-  }
-  
-  .edit-btn:not(:disabled):hover {
-    background-color: #d35400;
-  }
-  
-  .create-btn {
-    background-color: #2ecc71;
-    color: white;
-  }
-  
-  .create-btn:hover {
-    background-color: #27ae60;
-  }
-  
-  .chat-btn {
-    background-color: #3498db;
-    color: white;
-  }
-  
-  .chat-btn:not(:disabled):hover {
-    background-color: #2980b9;
-  }
-  
-  .save-btn {
-    background-color: #2ecc71;
-    color: white;
-  }
-  
-  .save-btn:hover {
-    background-color: #27ae60;
-  }
-  
-  .cancel-btn {
-    background-color: #95a5a6;
-    color: white;
-  }
-  
-  .cancel-btn:hover {
-    background-color: #7f8c8d;
-  }
-  
-  @media (max-width: 768px) {
-    .decks-grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-    
-    .deck-actions {
-      flex-wrap: wrap;
-    }
-  }
-  
-  @media (max-width: 480px) {
-    .decks-grid {
-      grid-template-columns: 1fr;
-    }
-    
-    .deck-actions {
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-    
-    .action-btn {
-      width: 100%;
-    }
-  }
-  
-  .action-btn.learn-btn {
-  background-color: #4CAF50; /* Зеленый цвет */
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
-  border-radius: 5px;
+  align-items: center;
 }
 
-.action-btn.learn-btn:hover {
-  background-color: #45a049; /* Темно-зеленый при наведении */
+.decks-header {
+  width: min(1100px, 100%);
+  padding: clamp(18px, 3vw, 32px);
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.decks-title {
+  margin: 8px 0 6px;
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+}
+
+.decks-subtitle {
+  margin: 0;
+  color: #556070;
+  line-height: 1.6;
+}
+
+.decks-create {
+  align-self: center;
+}
+
+.decks-grid {
+  width: min(1100px, 100%);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 18px;
+}
+
+.deck-card {
+  background: #fff;
+  border-radius: 18px;
+  padding: 18px;
+  box-shadow: var(--shadow-soft);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  cursor: pointer;
+  position: relative;
+  border: 2px solid transparent;
+}
+
+.deck-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hard);
+}
+
+.deck-card.selected {
+  border-color: rgba(255, 122, 24, 0.6);
+  background: #fff8ef;
+}
+
+.deck-name {
+  margin: 0 0 18px;
+  color: #1f2a37;
+  font-size: 1.1rem;
+}
+
+.deck-edit-input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 2px solid rgba(46, 196, 182, 0.6);
+  border-radius: 10px;
+  font-size: 1rem;
+}
+
+.deck-card-count {
+  position: absolute;
+  bottom: 12px;
+  right: 14px;
+  font-size: 0.85rem;
+  color: #7a8699;
+  background: #fff;
+  padding: 4px 8px;
+  border-radius: 999px;
+  border: 1px solid rgba(240, 217, 181, 0.8);
+}
+
+.deck-actions {
+  width: min(900px, 100%);
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  padding: 16px;
+  flex-wrap: wrap;
+}
+
+.action-btn {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 999px;
+  font-size: 0.95rem;
+  cursor: pointer;
+  font-weight: 700;
+  transition: transform 0.15s ease, box-shadow 0.2s ease;
+  min-width: 120px;
+  box-shadow: var(--shadow-soft);
+}
+
+.action-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.delete-btn {
+  background-color: #ff6b6b;
+  color: white;
+}
+
+.edit-btn {
+  background-color: #ffd166;
+  color: #1f2a37;
+}
+
+.save-btn {
+  background-color: var(--secondary);
+  color: white;
+}
+
+.cancel-btn {
+  background-color: #e4e7ec;
+  color: #1f2a37;
+}
+
+.learn-btn {
+  background-color: var(--primary);
+  color: white;
+}
+
+.action-btn:not(:disabled):hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hard);
 }

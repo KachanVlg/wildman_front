@@ -54,9 +54,16 @@ const SignIn = () => {
   };
 
   return (
-    <div className="signin-container">
-      <div className="signin-card">
-        <h1 className="signin-title">Регистрация</h1>
+    <div className="signin-container page-shell">
+      <div className="signin-card panel fade-in">
+        <div className="signin-header">
+          <span className="chip">Создай профиль</span>
+          <h1 className="signin-title">Регистрация</h1>
+          <p className="signin-subtitle">
+            Собери свой первый набор карточек и начни тренировку.
+          </p>
+        </div>
+
         {error && <div className="error-message">{error}</div>}
         
         <form onSubmit={handleSubmit} className="signin-form">
@@ -66,6 +73,7 @@ const SignIn = () => {
               type="text"
               id="username"
               name="username"
+              className="input-field"
               value={formData.username}
               onChange={(e) => setFormData({...formData, username: e.target.value})}
               required
@@ -80,6 +88,7 @@ const SignIn = () => {
               type="password"
               id="password"
               name="password"
+              className="input-field"
               value={formData.password}
               onChange={(e) => setFormData({...formData, password: e.target.value})}
               required
@@ -91,7 +100,7 @@ const SignIn = () => {
 
           <button 
             type="submit" 
-            className="signin-button"
+            className="signin-button btn-primary"
             disabled={isLoading}
           >
             {isLoading ? 'Регистрация...' : 'Зарегистрироваться'}
