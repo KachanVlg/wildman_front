@@ -57,6 +57,18 @@
   background: #fff8ef;
 }
 
+.deck-card-count {
+  position: absolute;
+  bottom: 12px;
+  right: 14px;
+  font-size: 0.85rem;
+  color: #7a8699;
+  background: #fff;
+  padding: 4px 8px;
+  border-radius: 999px;
+  border: 1px solid rgba(240, 217, 181, 0.8);
+}
+
 .deck-name {
   margin: 0 0 18px;
   color: #1f2a37;
@@ -71,17 +83,6 @@
   font-size: 1rem;
 }
 
-.deck-card-count {
-  position: absolute;
-  bottom: 12px;
-  right: 14px;
-  font-size: 0.85rem;
-  color: #7a8699;
-  background: #fff;
-  padding: 4px 8px;
-  border-radius: 999px;
-  border: 1px solid rgba(240, 217, 181, 0.8);
-}
 
 .deck-actions {
   width: min(900px, 100%);

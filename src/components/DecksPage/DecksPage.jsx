@@ -19,11 +19,30 @@ const DecksPage = () => {
             Authorization: `Bearer ${localStorage.getItem('token')}`
           }
         });
-        setDecks(response.data.map(deck => ({
-          id: deck.id,
-          name: deck.name,
-          cards: [] // Assuming cards are empty or could be fetched separately
-        })));
+        const decksWithCounts = await Promise.all(
+          response.data.map(async (deck) => {
+            try {
+              const cardsResponse = await axios.get(`/api/decks/${deck.id}/cards`, {
+                headers: {
+                  Authorization: `Bearer ${localStorage.getItem('token')}`
+                }
+              });
+              return {
+                id: deck.id,
+                name: deck.name,
+                cardsCount: Array.isArray(cardsResponse.data) ? cardsResponse.data.length : 0
+              };
+            } catch (cardsError) {
+              console.error('Error fetching cards count:', cardsError);
+              return {
+                id: deck.id,
+                name: deck.name,
+                cardsCount: 0
+              };
+            }
+          })
+        );
+        setDecks(decksWithCounts);
       } catch (error) {
         console.error('Error fetching decks:', error);
       }
@@ -122,7 +141,7 @@ const DecksPage = () => {
             ) : (
               <h3 className="deck-name">{deck.name}</h3>
             )}
-            <div className="deck-card-count">{deck.cards.length} cards</div>
+            <div className="deck-card-count">{deck.cardsCount} cards</div>
           </div>
         ))}
       </div>
