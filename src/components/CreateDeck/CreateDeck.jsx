@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import BackButton from '../BackButton/BackButton';
 import './CreateDeck.css';
 
 const CreateDeck = () => {
@@ -46,6 +47,7 @@ const CreateDeck = () => {
 
   return (
     <div className="create-deck-container">
+      <BackButton />
       <h1 className="create-deck-title">Create new deck</h1>
       
       {error && <div className="error-message">{error}</div>}

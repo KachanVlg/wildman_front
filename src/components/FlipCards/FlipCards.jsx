@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import BackButton from '../BackButton/BackButton';
 import './FlipCards.css';
 
 const FlipCards = () => {
@@ -129,12 +130,18 @@ const FlipCards = () => {
   };
 
   if (isLoading) {
-    return <div className="loading">Loading...</div>;
+    return (
+      <div className="loading">
+        <BackButton />
+        Loading...
+      </div>
+    );
   }
 
   if (error && cards.length === 0) {
     return (
       <div className="error-message">
+        <BackButton />
         <h2>{error}</h2>
         <p>No cards found in this deck</p>
         <button onClick={() => navigate('/decks')}>Back to Decks</button>
@@ -145,6 +152,7 @@ const FlipCards = () => {
   if (cards.length === 0) {
     return (
       <div className="flip-cards-container">
+        <BackButton />
         <h1 className="page-title">No Cards in This Deck</h1>
         <div className="add-card-section">
           <h3>Add New Card</h3>
@@ -173,6 +181,7 @@ const FlipCards = () => {
 
   return (
     <div className="flip-cards-container">
+      <BackButton />
       <h1 className="page-title">Learning Cards</h1>
       
       <div className="progress-container">

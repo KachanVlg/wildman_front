@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import BackButton from '../BackButton/BackButton';
 import './DecksPage.css';
 
 const DecksPage = () => {
@@ -89,6 +90,7 @@ const DecksPage = () => {
 
   return (
     <div className="decks-page">
+      <BackButton />
       <h1 className="decks-title">Your Decks</h1>
       
       <div className="decks-grid">

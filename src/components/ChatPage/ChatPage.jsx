@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import BackButton from '../BackButton/BackButton';
 import './ChatPage.css';
 
 const ChatPage = () => {
@@ -108,6 +109,7 @@ const ChatPage = () => {
   return (
     <div className="chat-container">
       <div className="conversation-area">
+        <BackButton />
         <h2 className="conversation-title">Чат с ассистентом</h2>
 
         {error && <div className="error-message">{error}</div>}

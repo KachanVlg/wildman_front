@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import './Auth.css';
 
 const Auth = () => {
@@ -8,6 +9,22 @@ const Auth = () => {
   });
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+
+  const extractToken = (raw) => {
+    if (!raw) {
+      return '';
+    }
+    try {
+      const parsed = JSON.parse(raw);
+      return parsed.token || parsed.accessToken || parsed.authToken || '';
+    } catch (e) {
+      const trimmed = raw.trim();
+      if (trimmed.includes(' ') || trimmed.toLowerCase() === 'ok' || trimmed.toLowerCase() === 'success') {
+        return '';
+      }
+      return trimmed;
+    }
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -42,6 +59,13 @@ const Auth = () => {
       if (!response.ok) {
         throw new Error(data || 'Login failed');
       }
+
+      const token = extractToken(data);
+      if (token) {
+        localStorage.setItem('token', token);
+        localStorage.setItem('authToken', token);
+      }
+      localStorage.setItem('username', formData.username);
 
       window.location.href = '/Home';
     } catch (error) {
@@ -89,6 +113,9 @@ const Auth = () => {
           {isLoading ? 'Logging in...' : 'Войти'}
         </button>
       </form>
+      <div className="auth-switch">
+        Нет аккаунта? <Link to="/signin">Зарегистрироваться</Link>
+      </div>
     </div>
   );
 };

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import axios from 'axios';
+import BackButton from '../BackButton/BackButton';
 import './EditDeck.css';
 
 const EditDeck = () => {
@@ -64,11 +65,17 @@ const EditDeck = () => {
   };
 
   if (isFetching) {
-    return <div className="edit-deck-loading">Loading...</div>;
+    return (
+      <div className="edit-deck-loading">
+        <BackButton />
+        Loading...
+      </div>
+    );
   }
 
   return (
     <div className="edit-deck-container">
+      <BackButton />
       <h1 className="edit-deck-title">Edit Deck</h1>
       
       {error && <div className="error-message">{error}</div>}

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import BackButton from '../BackButton/BackButton';
 import './Rating.css';
 
 const Rating = () => {
@@ -34,6 +35,7 @@ const Rating = () => {
 
   return (
     <div className="rating-container">
+      <BackButton />
       <h1 className="rating-title">How was your chat?</h1>
       
       <div className="rating-stars">

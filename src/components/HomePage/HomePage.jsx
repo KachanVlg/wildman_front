@@ -27,6 +27,7 @@ const HomePage = () => {
       // Очищаем данные пользователя
       localStorage.removeItem('username');
       localStorage.removeItem('authToken');
+      localStorage.removeItem('token');
       
       // Перенаправляем на страницу входа
       navigate('/');
