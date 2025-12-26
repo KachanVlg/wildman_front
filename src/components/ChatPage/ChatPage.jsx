@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import BackButton from '../BackButton/BackButton';
+import { apiUrl } from '../../config/api';
 import './ChatPage.css';
 
 const ChatPage = () => {
@@ -15,7 +16,7 @@ const ChatPage = () => {
     setIsLoading(true);
     setError('');
     try {
-      const response = await fetch('http://localhost:8080/api/chats', {
+      const response = await fetch(apiUrl('/api/chats'), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -62,7 +63,7 @@ const ChatPage = () => {
       setConversation(prev => [...prev, userMessage]);
 
       // Отправляем сообщение на сервер
-      const response = await fetch(`http://localhost:8080/api/chats/${chatId}/message`, {
+      const response = await fetch(apiUrl(`/api/chats/${chatId}/message`), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

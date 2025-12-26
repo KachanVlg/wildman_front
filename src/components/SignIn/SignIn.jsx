@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { apiUrl } from '../../config/api';
 import './SignIn.css';
 
 const SignIn = () => {
@@ -11,13 +12,29 @@ const SignIn = () => {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
+  const extractToken = (raw) => {
+    if (!raw) {
+      return '';
+    }
+    try {
+      const parsed = JSON.parse(raw);
+      return parsed.token || parsed.accessToken || parsed.authToken || '';
+    } catch (e) {
+      const trimmed = raw.trim();
+      if (trimmed.includes(' ') || trimmed.toLowerCase() === 'ok' || trimmed.toLowerCase() === 'success') {
+        return '';
+      }
+      return trimmed;
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
     setError('');
 
     try {
-      const response = await fetch('http://localhost:8080/api/user/create', {
+      const response = await fetch(apiUrl('/api/user/create'), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -37,14 +54,33 @@ const SignIn = () => {
       // Вторая проверка: пытаемся получить данные
       const result = await response.json().catch(() => null);
       
-      if (result) {
-        console.log('Registration successful:', result);
-        navigate('/signin'); // Перенаправляем на страницу входа
-      } else {
-        // Если ответ успешный, но без тела
-        console.log('Registration successful (no response body)');
-        navigate('/signin');
+      console.log('Registration successful:', result);
+
+      const loginResponse = await fetch(apiUrl('/api/login'), {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          username: formData.username,
+          password: formData.password
+        }),
+        credentials: 'include'
+      });
+
+      const loginData = await loginResponse.text();
+      if (!loginResponse.ok) {
+        throw new Error(loginData || 'Login failed after registration');
       }
+
+      const token = extractToken(loginData);
+      if (token) {
+        localStorage.setItem('token', token);
+        localStorage.setItem('authToken', token);
+      }
+      localStorage.setItem('username', formData.username);
+
+      navigate('/Home');
     } catch (error) {
       console.error('Registration error:', error);
       setError(error.message);

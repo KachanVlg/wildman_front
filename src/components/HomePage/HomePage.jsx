@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { apiUrl } from '../../config/api';
 import './HomePage.css'; // Стили можно создать отдельно
 
 const HomePage = () => {
@@ -19,7 +20,7 @@ const HomePage = () => {
   const handleLogout = async () => {
     try {
       // Отправляем запрос на выход
-      await fetch('/api/logout', {
+      await fetch(apiUrl('/api/logout'), {
         method: 'POST',
         credentials: 'include'
       });

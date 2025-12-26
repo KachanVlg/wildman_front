@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { apiUrl } from '../../config/api';
 import './Auth.css';
 
 const Auth = () => {
@@ -41,7 +42,7 @@ const Auth = () => {
 
     try {
       console.log('Sending request to /api/login');
-      const response = await fetch('http://localhost:8080/api/login', {
+      const response = await fetch(apiUrl('/api/login'), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

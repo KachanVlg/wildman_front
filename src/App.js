@@ -11,6 +11,7 @@ import ChatPage from './components/ChatPage/ChatPage';
 import Rating from './components/Rating/Rating';
 import HomePage from './components/HomePage/HomePage';
 import EditDeck from './components/EditDeck/EditDeck';
+import NotFound from './components/NotFound/NotFound';
 
 const isAuthenticated = () => {
   return Boolean(
@@ -48,6 +49,7 @@ function App() {
         <Route path="/chat" element={<RequireAuth><ChatPage /></RequireAuth>} />
         <Route path="/EditDeck" element={<RequireAuth><EditDeck /></RequireAuth>} />
         <Route path="/rating" element={<RequireAuth><Rating /></RequireAuth>} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
   );

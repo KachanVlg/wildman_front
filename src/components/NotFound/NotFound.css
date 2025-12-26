@@ -1,0 +1,30 @@
+.not-found {
+  align-items: center;
+  justify-content: center;
+}
+
+.not-found-card {
+  width: min(520px, 100%);
+  padding: clamp(22px, 4vw, 36px);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.not-found-card h1 {
+  margin: 0;
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+}
+
+.not-found-card p {
+  margin: 0;
+  color: #556070;
+  line-height: 1.5;
+}
+
+.not-found-home {
+  align-self: center;
+  margin-top: 10px;
+  text-decoration: none;
+}
